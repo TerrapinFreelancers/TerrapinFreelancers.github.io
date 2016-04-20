@@ -122,6 +122,7 @@ safari/firefox does not render the percents well*/
   color: grey;
   display: -webkit-inline-block;
   display: inline-block;
+  margin:0px;
 }
 .header-border{
   background-color: #9f0207;
