@@ -1,52 +1,51 @@
+var mobileMenu;
+var mobileMask;
+var docBody;
+
 $(document).ready(function() {
+
+  mobileMenu = document.getElementById("m-menu");
+  mobileMask = document.getElementById("m-mask");
+  docBody = document.getElementsByTagName("body");
+
+  $('#mobile-wrap').click(function (event) {
+    mobileMenu.classList.add('active');
+    mobileMask.classList.add('active');
+    docBody[0].classList.add('active');
+  });
+  $('#m-mask').click(function(){
+    mobileMenu.classList.remove('active');
+    mobileMask.classList.remove('active');
+    docBody[0].classList.remove('active');
+  });
+
 
   if( $(this).width() < 500 ) {
       document.getElementById("strong").innerHTML = "TerpLance";
-      document.getElementById("icon-and-name").style.width="250px";
+      document.getElementById("icon-and-name").style.width="225px";
   }
 
   $(window).resize(function() {
       if( $(this).width() < 500 ) {
           document.getElementById("strong").innerHTML = "TerpLance";
-          document.getElementById("icon-and-name").style.width="250px";
+          document.getElementById("icon-and-name").style.width="225px";
       }
-  });
-  $(window).resize(function() {
       if( $(this).width() >= 500 ) {
           document.getElementById("strong").innerHTML = "Terrapin Freelancers";
           document.getElementById("icon-and-name").style.width="370px";
       }
-  });
-  $(window).resize(function() {
       if( $(this).width() >= 775 ) {
-          $('#hamburger_modal').modal("hide");
+        mobileMenu.classList.remove('active');
+        mobileMask.classList.remove('active');
+        docBody[0].classList.remove('active');
       }
   });
+});
 
-  var hashTagActive = "";
-  $('#contact_link').click(function (event) {
-
-    if(hashTagActive != this.hash) { //this will prevent if the user click several times the same link to freeze the scroll.
-        event.preventDefault();
-        //calculate destination place
-        var dest = 0;
-        if ($(this.hash).offset().top > $(document).height() - $(window).height()) {
-            dest = $(document).height() - $(window).height();
-        } else {
-            dest = $(this.hash).offset().top;
-        }
-        //go to destination
-        $('html,body').animate({
-            scrollTop: dest
-        }, 500, 'swing');
-        hashTagActive = this.hash;
+$(document).keyup(function(e) {
+    if (e.keyCode == 27) {
+       mobileMenu.classList.remove('active');
+       mobileMask.classList.remove('active');
+       docBody[0].classList.remove('active');
     }
-
-    $("#contact_link").removeAttr('href')
-    setTimeout(function(){
-       $("#contact_link").attr("href", '#footer');
-    }, 1000);
-    hashTagActive = "";
-
-  });
 });
