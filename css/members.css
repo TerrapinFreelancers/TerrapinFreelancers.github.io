@@ -32,7 +32,7 @@
   font-size:16px;
   color:#d2cbcc;
 }
-.profile:hover .name{
+a.profile:hover .name{
   opacity:1;
 }
 
